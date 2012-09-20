@@ -1,0 +1,164 @@
+ 
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jcanvas.min.js"></script>
+
+</head>  
+<?php 
+echo $nodos = $_POST['option'];
+
+$matriz=$_POST;
+unset($matriz['option']);
+print_r($matriz);
+  for ($i=1; $i <=$nodos; $i++) { 
+    for ($j=1; $j <=$nodos ; $j++) { 
+         if($matriz['a'.$i.$j]!=$matriz['a'.$j.$i])
+            {
+              echo "no es simetrica";
+              $i=$nodos;
+            }
+    }
+  }
+  ?>
+
+<canvas width="900" height="500" >
+</canvas>
+
+
+
+<script type="text/javascript">
+      var N1="<?php echo $nodos = $_POST['option'];?>";
+      var text =["A","B","C","D","F","G"];
+  <?php
+  if ($nodos !="1") 
+  {
+  
+    for ($i=0; $i <$nodos; $i++) { ?>
+    var c_x =Math.floor (Math.random () * 200);
+    var c_y =Math.floor (Math.random () * 220);
+    var X=[];
+    var Y=[];
+    X[<?php echo $i?>]=c_x;
+    Y[<?php echo $i?>]=c_y;
+      //alert(N+"manuognho");
+
+    $("canvas").drawArc({
+      strokeStyle: "#000",
+      strokeWidth: 2,
+      x: c_x, y: c_y,
+      radius: 12
+    });
+    $("canvas").drawText({
+      fillStyle: "#9cf",
+     
+      strokeWidth: 2,
+     x: c_x, y: c_y,
+      font: "10pt Verdana, sans-serif",
+      text: text[<?php echo $i?>]
+    });
+       
+
+    <?php }
+
+  }
+ ?>
+</script>
+
+
+
+<script type="text/javascript">
+var N="<?php echo $nodos = $_POST['option'];?>";
+var text =["A","B","C","D","F","G"];
+
+if(N==1)
+{
+var arista="<?php echo $_POST[a11];?>"
+  //alert("solo itiem");
+  $("canvas").drawArc({
+  strokeStyle: "#000",
+  strokeWidth: 2,
+  x: 300, y:300,
+  radius: 16
+})
+.drawText({
+  fillStyle: "#9cf",
+ 
+  strokeWidth: 2,
+ x:300, y: 300,
+  font: "10pt Verdana, sans-serif",
+  text: text[0]
+});
+  
+  var i=1;
+ 
+  while (i<=arista)
+  {
+
+  
+   var color=["#01DF01","#0000FF","#FF0000","#58FAD0","#FFFF00","#2E2E2E","#688A08"];
+ 
+     $("canvas").rotateCanvas({
+      rotate: 135,
+      x: 300, y: 292-(i*9)
+    })
+    .drawArc({
+      strokeStyle: color[i],
+      strokeWidth: 2,
+      x: 300, y: 292-(i*9),
+      radius: 17,
+      start: 90, end: 1
+    })
+    .restoreCanvas();
+
+    i=i+1;
+
+  }
+}
+else
+{
+// for (var i=0; i<N; i+=1) {
+
+
+// var num=parseInt(N);
+// num += 2;
+
+// var color=["#01DF01","#0000FF","#FF0000","#58FAD0","#FFFF00","#2E2E2E","#688A08"];
+//  // for (var i =1 ; i<= N*N; i++) 
+//  // {
+   
+
+
+//  //    if(i==1 || i==num )
+//  //    {
+      
+ //      for (var k =1 ; k<=matriz[i] ; k++) 
+ //      {
+ //        $("canvas").rotateCanvas({
+ //        rotate: 135,
+ //        x: 300, y: 292-(k*9)
+ //        })
+ //      .drawArc({
+ //        strokeStyle: color[k],
+ //        strokeWidth: 2,
+ //        x: 300, y: 292-(k*9),
+ //        radius: 17,
+ //        start: 90, end: 1
+ //      })
+ //      .restoreCanvas();
+ //      }
+ //    }
+   
+ // }
+  
+
+}
+
+
+
+ 
+</script>
+
+
+ 
